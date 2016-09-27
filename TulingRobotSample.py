@@ -5,7 +5,7 @@ import base64
 
 API_KEY = "**************************"
  
-CONSTURL = "http://www.tuling123.com/openapi/api?key=%s&info=" % API_KEY
+CONSTURL = "http://www.tuling123.com/openapi/api?key=%s&userid=toby&info=" % API_KEY
 
 class Robot(object):
 
