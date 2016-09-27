@@ -3,12 +3,8 @@ import urllib.request
 import json
 import base64
 
-API_KEY = ""
-
-with open("api.data","r") as f:
-    ecrypt = base64.b64decode(f.read().encode("utf-8"))
-    API_KEY = ecrypt.decode("utf-8")
-    
+API_KEY = "**************************"
+ 
 CONSTURL = "http://www.tuling123.com/openapi/api?key=%s&info=" % API_KEY
 
 class Robot(object):
@@ -25,11 +21,17 @@ class Robot(object):
             return "小小叽今天已经累了，改天再玩吧"
         else:
             length=len(hjson.keys())
-            content=hjson["text"]
-            if length==3:
-                return "小小叽:" + content+ "\r\n" + hjson["url"]
-            elif length==2:
-                return "小小叽:" + content
+            content="小小叽：" + hjson["text"]
+            if  "list" in hjson:
+                for i in hjson["list"]:
+                    for (lsk ,lsv) in i.items():
+                        if lsk == "icon":
+                            continue
+                        content = content + "\r\n"
+                        content = content + str(lsv)
+            if "url" in hjson:
+                content = content + "\r\n"+ hjson["url"]
+            return content
 
     
 
